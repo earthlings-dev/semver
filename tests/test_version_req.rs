@@ -14,7 +14,7 @@ use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
 #[cfg(test_node_semver)]
-use node::{req, VersionReq};
+use node::{VersionReq, req};
 #[cfg(not(test_node_semver))]
 use semver::VersionReq;
 
@@ -169,7 +169,9 @@ pub fn test_multiple() {
     let err = req_err("1.2.3 - 2.3.4");
     assert_to_string(err, "expected comma after patch version number, found '-'");
 
-    let err = req_err(">1, >2, >3, >4, >5, >6, >7, >8, >9, >10, >11, >12, >13, >14, >15, >16, >17, >18, >19, >20, >21, >22, >23, >24, >25, >26, >27, >28, >29, >30, >31, >32, >33");
+    let err = req_err(
+        ">1, >2, >3, >4, >5, >6, >7, >8, >9, >10, >11, >12, >13, >14, >15, >16, >17, >18, >19, >20, >21, >22, >23, >24, >25, >26, >27, >28, >29, >30, >31, >32, >33",
+    );
     assert_to_string(err, "excessive number of version comparators");
 }
 

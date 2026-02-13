@@ -44,16 +44,16 @@ fn matches_exact(cmp: &Comparator, ver: &Version) -> bool {
         return false;
     }
 
-    if let Some(minor) = cmp.minor {
-        if ver.minor != minor {
-            return false;
-        }
+    if let Some(minor) = cmp.minor
+        && ver.minor != minor
+    {
+        return false;
     }
 
-    if let Some(patch) = cmp.patch {
-        if ver.patch != patch {
-            return false;
-        }
+    if let Some(patch) = cmp.patch
+        && ver.patch != patch
+    {
+        return false;
     }
 
     ver.pre == cmp.pre
@@ -116,16 +116,16 @@ fn matches_tilde(cmp: &Comparator, ver: &Version) -> bool {
         return false;
     }
 
-    if let Some(minor) = cmp.minor {
-        if ver.minor != minor {
-            return false;
-        }
+    if let Some(minor) = cmp.minor
+        && ver.minor != minor
+    {
+        return false;
     }
 
-    if let Some(patch) = cmp.patch {
-        if ver.patch != patch {
-            return ver.patch > patch;
-        }
+    if let Some(patch) = cmp.patch
+        && ver.patch != patch
+    {
+        return ver.patch > patch;
     }
 
     ver.pre >= cmp.pre

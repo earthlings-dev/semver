@@ -137,7 +137,7 @@ fn pad(
     let (pre_pad, post_pad) = match align {
         Alignment::Left => (0, padding),
         Alignment::Right => (padding, 0),
-        Alignment::Center => (padding / 2, (padding + 1) / 2),
+        Alignment::Center => (padding / 2, padding.div_ceil(2)),
     };
 
     let fill = formatter.fill();
@@ -154,9 +154,5 @@ fn pad(
 }
 
 fn digits(val: u64) -> usize {
-    if val < 10 {
-        1
-    } else {
-        1 + digits(val / 10)
-    }
+    if val < 10 { 1 } else { 1 + digits(val / 10) }
 }

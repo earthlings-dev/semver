@@ -5,12 +5,12 @@ authors = ["David Tolnay <dtolnay@gmail.com>"]
 categories = ["data-structures", "no-std"]
 description = "Parser and evaluator for Cargo's flavor of Semantic Versioning"
 documentation = "https://docs.rs/semver"
-edition = "2021"
+edition = "2024"
 exclude = ["build.rs"]
 keywords = ["cargo"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/dtolnay/semver"
-rust-version = "1.68"
+rust-version = "1.93.0"
 
 [features]
 default = ["std"]
@@ -18,10 +18,10 @@ serde = ["dep:serde"]
 std = []
 
 [dependencies]
-serde = { package = "serde_core", version = "1.0.220", optional = true, default-features = false }
+serde = { package = "serde_core", git = "https://github.com/earthlings-dev/serde.git", version = "1.0.228", optional = true, default-features = false }
 
 [target.'cfg(any())'.dependencies]
-serde = { version = "1.0.220", optional = true, default-features = false }
+serde = { git = "https://github.com/earthlings-dev/serde.git", version = "1.0.228", optional = true, default-features = false }
 
 [target.'cfg(not(miri))'.dev-dependencies]
 criterion = { version = "0.8", default-features = false }

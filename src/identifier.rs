@@ -66,7 +66,7 @@
 // repr, leaving it available as a niche for downstream code. For example this
 // allows size_of::<Version>() == size_of::<Option<Version>>().
 
-use crate::alloc::alloc::{alloc, dealloc, handle_alloc_error, Layout};
+use crate::alloc::alloc::{Layout, alloc, dealloc, handle_alloc_error};
 use core::mem;
 use core::num::{NonZeroU64, NonZeroUsize};
 use core::ptr::{self, NonNull};
@@ -408,5 +408,5 @@ unsafe fn ptr_as_str(repr: &NonNull<u8>) -> &str {
 fn bytes_for_varint(len: NonZeroUsize) -> usize {
     let usize_bits = mem::size_of::<usize>() * 8;
     let len_bits = usize_bits - len.leading_zeros() as usize;
-    (len_bits + 6) / 7
+    len_bits.div_ceil(7)
 }
