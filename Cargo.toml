@@ -24,8 +24,8 @@ serde = { package = "serde_core", version = "1.0.228", optional = true, default-
 serde = { version = "1.0.228", optional = true, default-features = false }
 
 [patch.crates-io]
-serde = { git = "https://github.com/earthlings-dev/serde.git" }
-serde_core = { git = "https://github.com/earthlings-dev/serde.git" }
+serde = { path = "../serde/serde" }
+serde_core = { path = "../serde/serde_core" }
 
 [target.'cfg(not(miri))'.dev-dependencies]
 criterion = { version = "0.8", default-features = false }
